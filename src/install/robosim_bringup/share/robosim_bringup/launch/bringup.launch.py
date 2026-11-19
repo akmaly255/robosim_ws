@@ -1,0 +1,1 @@
+/home/rikka/my_ws/src/robosim_bringup/launch/bringup.launch.py

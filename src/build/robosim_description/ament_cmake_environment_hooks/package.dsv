@@ -1,0 +1,4 @@
+source;share/robosim_description/local_setup.bash
+source;share/robosim_description/local_setup.dsv
+source;share/robosim_description/local_setup.sh
+source;share/robosim_description/local_setup.zsh

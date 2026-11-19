@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+  <xacro:property
+    name="body_blue_rgba"
+    value="0.1 0.3 0.8 1.0"
+  />
+
+  <xacro:property
+    name="wheel_black_rgba"
+    value="0.1 0.1 0.1 1.0"
+  />
+
+  <xacro:property
+    name="camera_white_rgba"
+    value="0.8 0.8 0.8 1.0"
+  />
+
+  <xacro:property
+    name="gimbal_orange_rgba"
+    value="0.8 0.647 0.1 1.0"
+  />
+
+  <!-- Materials -->
+  <material name="body_blue">
+    <color rgba="${body_blue_rgba}" />
+  </material>
+
+  <material name="wheel_black">
+    <color rgba="${wheel_black_rgba}" />
+  </material>
+  
+  <material name="camera_white">
+    <color rgba="${camera_white_rgba}" />
+  </material>
+
+  <material name="gimbal_orange" >
+    <color rgba="${gimbal_orange_rgba}" />
+  </material>
+
+</robot>

@@ -1,0 +1,163 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+  <!-- Gazebo ROS2 Control -->
+  <gazebo>
+    <plugin name="gazebo_ros2_control" filename="libgazebo_ros2_control.so"> 
+
+      <robot_param>robot_description</robot_param>
+      <robot_param_node>robot_state_publisher</robot_param_node>
+
+      <parameters>$(find robosim_simulation)/config/controllers.yaml</parameters>
+    </plugin>
+  </gazebo>
+
+  <!-- Differential Drive Plugin -->
+  <gazebo>
+    <plugin name="diff_drive" filename="libgazebo_ros_diff_drive.so">
+
+      <!-- Wheel joints -->
+      <left_joint>left_wheel_joint</left_joint>
+      <right_joint>right_wheel_joint</right_joint>
+
+      <!-- Wheel geometry -->
+      <wheel_separation>${2 * wheel_offset_y}</wheel_separation>
+      <wheel_diameter>${2 * wheel_radius}</wheel_diameter>
+
+      <!-- Controller limits -->
+      <max_wheel_torque>5.0</max_wheel_torque>
+      <max_wheel_acceleration>0.0</max_wheel_acceleration>
+
+      <!-- Odometry -->
+      <publish_odom>true</publish_odom>
+      <publish_odom_tf>true</publish_odom_tf>
+
+      <odometry_frame>odom</odometry_frame>
+      <robot_base_frame>base_link</robot_base_frame>
+
+    </plugin>
+  </gazebo>
+
+  <!-- Gazebo Joint State Publisher -->
+  <gazebo>
+    <plugin name="joint_states_pub" filename="libgazebo_ros_joint_state_publisher.so">
+
+	<ros>
+          <remapping>~/out:=/joint_states</remapping>
+        </ros>
+
+        <update_rate>30</update_rate>
+
+        <!-- Differential-drive wheels -->
+        <joint_name>left_wheel_joint</joint_name>
+        <joint_name>right_wheel_joint</joint_name>
+      
+    </plugin>
+  </gazebo>
+
+  <!-- Camera Sensor Plugin -->
+  <gazebo reference="camera_lens_link">
+    <sensor name="camera" type="camera">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>30</update_rate>
+
+      <camera>
+        <horizontal_fov>1.098</horizontal_fov>
+        <image>
+          <format>R8G8B8</format>
+          <width>640</width>
+          <height>480</height>
+        </image>
+        <clip>
+          <near>0.02</near>
+          <far>20.0</far>
+        </clip>
+      </camera>
+
+      <!-- Camera Plugin  -->
+      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+        <camera_name>camera</camera_name>
+        <frame_name>camera_optical_link</frame_name>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <!-- Placinng color to models -->
+  <gazebo reference="base_link">
+    <visual>
+      <material>
+        <ambient>0.0 0.15 0.4 1.0</ambient>
+        <diffuse>${body_blue_rgba}</diffuse>
+      </material>
+    </visual>
+  </gazebo>
+
+  <gazebo reference="left_wheel_link">
+    <visual>
+      <material>
+        <ambient>0.05 0.05 0.05 1.0</ambient>
+        <diffuse>${wheel_black_rgba}</diffuse>
+      </material>
+    </visual>
+  </gazebo>
+
+  <gazebo reference="right_wheel_link">
+    <visual>
+      <material>
+        <ambient>0.05 0.05 0.05 1.0</ambient>
+        <diffuse>${wheel_black_rgba}</diffuse>
+      </material>
+    </visual>
+  </gazebo>
+ 
+
+  <gazebo reference="caster_wheel_link">
+    <visual>
+      <material>
+        <ambient>0.05 0.05 0.05 1.0</ambient>
+        <diffuse>${wheel_black_rgba}</diffuse>
+      </material>
+    </visual>
+    <!-- Add low-friction for caster -->
+    <mu1>0.00001</mu1>
+    <mu2>0.00001</mu2>
+  </gazebo>
+
+  <gazebo reference="pan_link">
+    <visual>
+      <material>
+        <ambient>0.4 0.3235 0.05 1.0</ambient>
+        <diffuse>${gimbal_orange_rgba}</diffuse>
+      </material>
+    </visual>
+  </gazebo>
+
+  <gazebo reference="tilt_link">
+    <visual>
+      <material>
+        <ambient>0.4 0.3235 0.05 1.0</ambient>
+        <diffuse>${gimbal_orange_rgba}</diffuse>
+      </material>
+    </visual>
+  </gazebo>
+
+  <gazebo reference="camera_base_link">
+    <visual>
+      <material>
+        <ambient>0.4 0.4 0.4 1.0</ambient>
+        <diffuse>${camera_white_rgba}</diffuse>
+      </material>
+    </visual>
+  </gazebo>
+
+  <gazebo reference="camera_lens_link">
+    <visual>
+      <material>
+        <ambient>0.4 0.4 0.4 1.0</ambient>
+        <diffuse>${camera_white_rgba}</diffuse>
+      </material>
+    </visual>
+  </gazebo>
+
+</robot>

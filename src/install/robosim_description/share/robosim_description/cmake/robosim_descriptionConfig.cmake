@@ -1,0 +1,1 @@
+/home/rikka/my_ws/src/build/robosim_description/ament_cmake_core/robosim_descriptionConfig.cmake

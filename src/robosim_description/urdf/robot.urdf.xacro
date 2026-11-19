@@ -1,0 +1,237 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="mobile_robot">
+
+  <xacro:include filename="robot_dimensions.xacro" /> 
+  <xacro:include filename="robot_materials.xacro" /> 
+  <xacro:include filename="robot_inertial_macro.xacro" />
+  <xacro:include filename="robot.gazebo.xacro" />
+  <xacro:include filename="robot.ros2_control.xacro" />
+
+  <!-- Main Chassis -->
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="${body_length} ${body_width} ${body_height}" />
+      </geometry>
+      <material name="body_blue" />
+    </visual>
+    <collision>
+       <geometry>
+        <box size="${body_length} ${body_width} ${body_height}" />
+      </geometry>
+    </collision>
+    <xacro:box_inertia
+      mass="${body_mass}"
+      x="${body_length}"
+      y="${body_width}"
+      z="${body_height}" />
+  </link>
+
+  <!-- Wheels -->
+  <link name="right_wheel_link">
+    <visual>
+      <origin rpy="${rotate_quarter} 0 0" xyz="0 0 0" />
+      <geometry>
+        <cylinder length="${wheel_width}" radius="${wheel_radius}" />
+      </geometry>
+      <material name="wheel_black" />
+    </visual>
+    <collision>
+       <origin rpy="${rotate_quarter} 0 0" xyz="0 0 0" />
+       <geometry>
+        <cylinder length="${wheel_width}" radius="${wheel_radius}" />
+      </geometry>
+    </collision>
+    <xacro:cylinder_y_inertia
+      mass="${wheel_mass}"
+      radius="${wheel_radius}"
+      length="${wheel_width}" />
+  </link>
+
+  <link name="left_wheel_link">
+    <visual>
+      <origin rpy="${rotate_quarter} 0 0" xyz="0 0 0" />
+      <geometry>
+         <cylinder length="${wheel_width}" radius="${wheel_radius}" />
+      </geometry>
+      <material name="wheel_black" />
+    </visual>
+    <collision>
+      <origin rpy="${rotate_quarter} 0 0" xyz="0 0 0" />
+      <geometry>
+         <cylinder length="${wheel_width}" radius="${wheel_radius}" />
+      </geometry>
+    </collision>
+    <xacro:cylinder_y_inertia
+      mass="${wheel_mass}"
+      radius="${wheel_radius}"
+      length="${wheel_width}" />
+  </link>  
+
+  <!-- Caster Ball -->
+  <link name="caster_wheel_link">
+    <visual>
+      <geometry>
+        <sphere radius="${caster_radius}" />
+      </geometry>
+      <material name="wheel_black" />
+    </visual>
+     <collision>
+      <geometry>
+        <sphere radius="${caster_radius}" />
+      </geometry>
+    </collision>
+    <xacro:sphere_inertia
+      mass="${caster_mass}"
+      radius="${caster_radius}" />
+  </link>
+
+  <!-- Gimbal -->
+  <link name="pan_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0 " />
+      <geometry>
+        <cylinder length="${pan_width}" radius="${pan_radius}" />
+      </geometry>
+      <material name="gimbal_orange" />
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="${pan_width}" radius="${pan_radius}" />
+      </geometry>
+    </collision>
+    <xacro:cylinder_z_inertia
+      mass="${pan_mass}"
+      radius="${pan_radius}"
+      length="${pan_width}" />
+  </link>
+
+ <link name="tilt_link">
+    <visual>
+      <origin rpy="${rotate_quarter} 0 0" xyz="0 0 0 " />
+      <geometry>
+        <cylinder length="${tilt_width}" radius="${tilt_radius}" />
+      </geometry>
+      <material name="gimbal_orange" />
+    </visual>
+    <collision>
+      <origin rpy="${rotate_quarter} 0 0" xyz="0 0 0" />
+      <geometry>
+        <cylinder length="${tilt_width}" radius="${tilt_radius}" />
+      </geometry>
+    </collision>
+    <xacro:cylinder_y_inertia
+      mass="${tilt_mass}"
+      radius="${tilt_radius}"
+      length="${tilt_width}" />
+  </link>
+
+  <!-- Camera -->
+ <link name="camera_base_link">
+    <visual>
+      <origin rpy="0 ${rotate_quarter} 0" xyz="0 0 0 " />
+      <geometry>
+        <box size="${camera_base_width} ${camera_base_height} ${camera_base_length}" />
+      </geometry>
+      <material name="camera_white" />
+    </visual>
+    <collision>
+      <origin rpy="0 ${rotate_quarter} 0" xyz="0 0 0" />
+      <geometry>
+        <box size="${camera_base_width} ${camera_base_height} ${camera_base_length}" />
+      </geometry>
+    </collision>
+    <xacro:box_inertia
+      mass="${camera_base_mass}"
+      x="${camera_base_length}"
+      y="${camera_base_height}"
+      z="${camera_base_width}" />
+  </link>
+
+ <link name="camera_lens_link">
+    <visual>
+      <origin rpy="0 ${rotate_quarter} 0" xyz="0 0 0 " />
+      <geometry>
+        <cylinder length="${camera_lens_width}" radius="${camera_lens_radius}" />
+      </geometry>
+      <material name="camera_white" />
+    </visual>
+    <collision>
+      <origin rpy="0 ${rotate_quarter} 0" xyz="0 0 0" />
+      <geometry>
+        <cylinder length="${camera_lens_width}" radius="${camera_lens_radius}" />
+      </geometry>
+    </collision>
+    <xacro:cylinder_x_inertia
+      mass="${camera_lens_mass}"
+      radius="${camera_lens_radius}"
+      length="${camera_lens_width}" />
+  </link>
+
+  <link name="camera_optical_link"></link>
+
+  <!-- Wheels Joint -->
+  <joint name="right_wheel_joint" type="continuous">
+    <parent link="base_link" />
+    <child link="right_wheel_link" />
+    <origin xyz="${wheel_offset_x} ${-wheel_offset_y} ${wheel_offset_z}"  />
+    <axis xyz="0 ${wheel_joint_axis} 0" />
+  </joint>
+
+  <joint name="left_wheel_joint" type="continuous">
+    <parent link="base_link" />
+    <child link="left_wheel_link" />
+    <origin xyz="${wheel_offset_x} ${wheel_offset_y} ${wheel_offset_z}"  />
+    <axis xyz="0 ${wheel_joint_axis} 0" />
+  </joint>
+
+  <!-- Caster Joint -->
+  <joint name="caster_wheel_joint" type="fixed">
+    <parent link="base_link" />
+    <child link="caster_wheel_link" />
+    <origin xyz="${caster_offset_x} 0 ${caster_offset_z}" />
+  </joint>
+
+  <!-- Gimbal Joint -->
+  <joint name="pan_joint" type="revolute">
+    <parent link="base_link" />
+    <child link="pan_link" />
+    <origin xyz="${pan_offset_x} 0 ${pan_offset_z}" />
+    <axis xyz="0 0 ${pan_joint_axis}" />
+    <limit lower="-3.1416"
+       upper="3.1416"
+       effort="5.0"
+       velocity="2.0" />
+  </joint>
+
+  <joint name="tilt_joint" type="revolute">
+    <parent link="pan_link" />
+    <child link="tilt_link" />
+    <origin xyz="0 0 ${tilt_offset_z}" />
+    <axis xyz="0 ${tilt_joint_axis} 0" />
+    <limit lower="-1.5708"
+       upper="0.7"
+       effort="5.0"
+       velocity="2.0" />
+  </joint>
+
+  <!-- Camera Joint -->
+  <joint name="camera_base_joint" type="fixed">
+    <parent link="tilt_link" />
+    <child link="camera_base_link" />
+    <origin xyz="${camera_base_offset_x} 0 0" />
+  </joint>
+
+  <joint name="camera_lens_joint" type="fixed">
+    <parent link="camera_base_link" />
+    <child link="camera_lens_link" />
+    <origin xyz="${camera_lens_offset_x} 0 0" />
+  </joint>
+
+  <joint name="camera_optical_joint" type="fixed">
+    <parent link="camera_lens_link" />
+    <child link="camera_optical_link" />
+    <origin xyz="0 0 0" rpy="${-rotate_quarter} 0 ${-rotate_quarter}" />
+  </joint>
+
+</robot>

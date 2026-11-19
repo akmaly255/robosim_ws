@@ -1,0 +1,16 @@
+/home/rikka/my_ws/src/install/robosim_bringup/share/robosim_bringup/launch/bringup.launch.py
+/home/rikka/my_ws/src/install/robosim_bringup/share/ament_index/resource_index/package_run_dependencies/robosim_bringup
+/home/rikka/my_ws/src/install/robosim_bringup/share/ament_index/resource_index/parent_prefix_path/robosim_bringup
+/home/rikka/my_ws/src/install/robosim_bringup/share/robosim_bringup/environment/ament_prefix_path.sh
+/home/rikka/my_ws/src/install/robosim_bringup/share/robosim_bringup/environment/ament_prefix_path.dsv
+/home/rikka/my_ws/src/install/robosim_bringup/share/robosim_bringup/environment/path.sh
+/home/rikka/my_ws/src/install/robosim_bringup/share/robosim_bringup/environment/path.dsv
+/home/rikka/my_ws/src/install/robosim_bringup/share/robosim_bringup/local_setup.bash
+/home/rikka/my_ws/src/install/robosim_bringup/share/robosim_bringup/local_setup.sh
+/home/rikka/my_ws/src/install/robosim_bringup/share/robosim_bringup/local_setup.zsh
+/home/rikka/my_ws/src/install/robosim_bringup/share/robosim_bringup/local_setup.dsv
+/home/rikka/my_ws/src/install/robosim_bringup/share/robosim_bringup/package.dsv
+/home/rikka/my_ws/src/install/robosim_bringup/share/ament_index/resource_index/packages/robosim_bringup
+/home/rikka/my_ws/src/install/robosim_bringup/share/robosim_bringup/cmake/robosim_bringupConfig.cmake
+/home/rikka/my_ws/src/install/robosim_bringup/share/robosim_bringup/cmake/robosim_bringupConfig-version.cmake
+/home/rikka/my_ws/src/install/robosim_bringup/share/robosim_bringup/package.xml

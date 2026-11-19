@@ -1,0 +1,209 @@
+<sdf version="1.7">
+  <world name="default">
+    <light name="sun" type="directional">
+      <cast_shadows>1</cast_shadows>
+      <pose>0 0 50 0 -0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.5 0.5 0.5 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
+    </light>
+    <model name="ground_plane">
+      <static>1</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>50 50</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>50</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name="visual">
+          <cast_shadows>0</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>50 50</size>
+            </plane>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <gravity>0 0 -9.8</gravity>
+    <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
+    <atmosphere type="adiabatic"/>
+    <physics type="ode">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    <scene>
+      <ambient>0.4 0.4 0.4 1</ambient>
+      <background>0.7 0.7 0.7 1</background>
+      <shadows>true</shadows>
+      <grid>false</grid>
+      <origin_visual>false</origin_visual>
+
+      <sky>
+        <time>10</time>
+        <sunrise>6</sunrise>
+        <sunset>18</sunset>
+
+      <clouds>
+        <speed>0.6</speed>
+        <direction>0</direction>
+        <humidity>0.9</humidity>
+        <mean_size>0.8</mean_size>
+        <ambient>0.8 0.8 0.8 1</ambient>
+      </clouds>
+
+      </sky>
+
+    </scene>
+    <audio>
+      <device>default</device>
+    </audio>
+    <wind/>
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <latitude_deg>0</latitude_deg>
+      <longitude_deg>0</longitude_deg>
+      <elevation>0</elevation>
+      <heading_deg>0</heading_deg>
+    </spherical_coordinates>
+    <include>
+      <uri>model://robosim_building_1</uri>
+      <name>building_1</name>
+      <pose>-0.25 -2.665 0 0 -0 0</pose>
+    </include>
+    <include>
+      <uri>model://robosim_table</uri>
+      <name>table</name>
+      <pose>-5.784 1.226 0 0 -0 0</pose>
+    </include>
+    <include>
+      <uri>model://robosim_bookshelf</uri>
+      <name>bookshelf</name>
+      <pose>-6.11964 -7.00983 0 0 -0 0</pose>
+    </include>
+    <include>
+      <uri>model://robosim_construction_barrel</uri>
+      <name>Construction Barrel</name>
+      <pose>4.01954 -6.71418 0 0 -0 0</pose>
+    </include>
+    <include>
+      <uri>model://robosim_construction_barrel</uri>
+      <name>Construction Barrel_0</name>
+      <pose>6.32374 -6.75597 0 0 -0 0</pose>
+    </include>
+    <include>
+      <uri>model://robosim_cardboard_box</uri>
+      <name>cardboard_box</name>
+      <pose>5.16641 1.5724 0.149 0 -0 0</pose>
+    </include>
+    <include>
+      <uri>model://robosim_dumpster</uri>
+      <name>Dumpster</name>
+      <pose>2.17 2.16 0 0 0 0</pose>
+      <static>true</static>
+    </include>
+    <include>
+      <uri>model://robosim_cabinet</uri>
+      <name>cabinet</name>
+      <pose>-1.432 -2.475 0 0 0 -1.57</pose>
+    </include>
+    <include>
+      <uri>model://robosim_construction_cone</uri>
+      <name>Construction Cone</name>
+      <pose>-1.8655 -6.16573 0 0 -0 0</pose>
+    </include>
+    <include>
+      <uri>model://robosim_bookshelf</uri>
+      <name>bookshelf_clone</name>
+      <pose>-6.11964 -5.51597 0 0 -0 0</pose>
+    </include>
+    <include>
+      <uri>model://robosim_bookshelf</uri>
+      <name>bookshelf_clone_0</name>
+      <pose>-6.11964 -3.90096 0 0 -0 0</pose>
+    </include>
+    <include>
+      <uri>model://robosim_bookshelf</uri>
+      <name>bookshelf_clone_1</name>
+      <pose>-6.11964 -2.29591 0 0 -0 0</pose>
+    </include>
+    <include>
+      <uri>model://robosim_construction_cone</uri>
+      <name>Construction Cone_clone</name>
+      <pose>-1.07624 -6.15914 -0 0 -1e-06 0</pose>
+    </include>
+    <include>
+      <uri>model://robosim_cabinet</uri>
+      <name>cabinet_clone</name>
+      <pose>-1.432 -2.963 0 0 -0 0</pose>
+    </include>
+    <include>
+      <uri>model://robosim_cabinet</uri>
+      <name>cabinet_clone_0</name>
+      <pose>-2.129 1.178 0 0 0 3.1415</pose>
+    </include>
+    <include>
+      <uri>model://robosim_cardboard_box</uri>
+      <name>cardboard_box_clone</name>
+      <pose>5.70268 1.573 0.149 0 -0 0</pose>
+    </include>
+    <include>      
+      <uri>model://robosim_cardboard_box</uri>
+      <name>cardboard_box_clone_0</name>
+      <pose>5.165 1.031 0.149 0 -0 0</pose>
+    </include>
+    <include>
+      <uri>model://robosim_cardboard_box</uri>
+      <name>cardboard_box_clone_1</name>
+      <pose>5.712 1.034 0.149 0 -0 0</pose>
+    </include>
+    <gui fullscreen="0">
+      <camera name="user_camera">
+        <pose>13.0 -16.0 16.5 0 0.75 2.35</pose>
+        <view_controller>orbit</view_controller>
+        <projection_type>perspective</projection_type>
+      </camera>
+    </gui>
+  </world>
+</sdf>

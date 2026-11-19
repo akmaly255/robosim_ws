@@ -1,0 +1,16 @@
+robosim_teleop:
+  ros_parameters:
+
+    linear_axis: 1
+    angular_axis: 0
+
+    max_linear_speed: 1.0
+    max_angular_speed: 2.0
+
+    pan_axis: 3
+    tilt_axis: 4
+
+    max_pan_speed: 2.0
+    max_tilt_speed: 2.0
+
+    camera_forward_button: 1

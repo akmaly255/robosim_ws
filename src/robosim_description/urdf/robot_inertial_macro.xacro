@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+  <!-- BOX INERTIA -->
+  <xacro:macro name="box_inertia" params="mass x y z">
+    <inertial>
+      <origin xyz="0 0 0"  rpy="0 0 0" />
+      <mass value="${mass}" />
+      <inertia
+        ixx="${mass * (y**2 + z**2) / 12}"
+        ixy="0"
+        ixz="0"
+        iyy="${mass * (x**2 + z**2) / 12}"
+        iyz="0"
+        izz="${mass * (x**2 + y**2) / 12}" />
+    </inertial>
+  </xacro:macro>
+
+  <!-- CYLINDER X INERTIA -->
+  <xacro:macro name="cylinder_x_inertia" params="mass radius length">
+    <inertial>
+      <origin xyz="0 0 0"  rpy="0 0 0" />
+      <mass value="${mass}" />
+      <inertia
+        ixx="${mass * radius**2 / 2}"
+        ixy="0"
+        ixz="0"
+        iyy="${mass * (3*radius**2 + length**2) / 12}"
+        iyz="0"
+        izz="${mass * (3*radius**2 + length**2) / 12}" />
+    </inertial>
+  </xacro:macro>
+
+  <!-- CYLINDER Y INERTIA -->
+  <xacro:macro name="cylinder_y_inertia" params="mass radius length">
+    <inertial>
+      <origin xyz="0 0 0"  rpy="0 0 0" />
+      <mass value="${mass}" />
+      <inertia
+        ixx="${mass * (3*radius**2 + length**2) / 12}"
+        ixy="0"
+        ixz="0"
+        iyy="${mass * radius**2 / 2}"
+        iyz="0"
+        izz="${mass * (3*radius**2 + length**2) / 12}" />
+    </inertial>
+  </xacro:macro>
+
+  <!-- CYLINDER Z INERTIA -->
+  <xacro:macro name="cylinder_z_inertia" params="mass radius length">
+    <inertial>
+      <origin xyz="0 0 0"  rpy="0 0 0" />
+      <mass value="${mass}" />
+      <inertia
+        ixx="${mass * (3*radius**2 + length**2) / 12}"
+        ixy="0"
+        ixz="0"
+        iyy="${mass * (3*radius**2 + length**2) / 12}"
+        iyz="0"
+        izz="${mass * radius**2 / 2}" />
+    </inertial>
+  </xacro:macro>
+
+  <!-- SPHERE INERTIA -->
+  <xacro:macro name="sphere_inertia" params="mass radius">
+    <inertial>
+      <origin xyz="0 0 0"  rpy="0 0 0" />
+      <mass value="${mass}" />
+      <inertia
+        ixx="${2 * mass * radius**2 / 5}"
+        ixy="0"
+        ixz="0"
+        iyy="${2 * mass * radius**2 / 5}"
+        iyz="0"
+        izz="${2 * mass * radius**2 / 5}" />
+    </inertial>
+  </xacro:macro>
+</robot>
