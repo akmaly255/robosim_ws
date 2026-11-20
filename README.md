@@ -2,10 +2,6 @@
 
 A joystick-teleoperated differential-drive mobile robot simulated in **Gazebo Classic** using **ROS 2 Humble**. The robot includes a two-axis pan–tilt camera gimbal, an RGB camera, odometry, joint-state feedback, and RViz2 visualization. A custom maze-like environment contains reusable obstacle models stored alongside the simulation source.
 
-> **Project status:** Core simulation and integration have been tested on the development computer. Reproduction on a second computer is still pending.
->
-> **Before publishing:** Replace the repository URL and bringup launch filename placeholders below, confirm the topic names and joystick mappings, and document the licenses/attribution for downloaded models.
-
 ## Features
 
 - Differential-drive robot model built from URDF/Xacro and basic geometries.
@@ -23,7 +19,7 @@ Developed for:
 
 - Ubuntu **22.04**
 - ROS 2 **Humble**
-- **Gazebo Classic 11** (not the newer Gazebo / Gazebo Sim)
+- **Gazebo Classic 11**
 - `colcon`, `rosdep`, and an input joystick/gamepad
 
 Gazebo Classic is end-of-life; use the same environment for reproducible results, and plan a future migration if long-term maintenance is needed.
