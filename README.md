@@ -145,23 +145,6 @@ ros2 topic hz /camera/image_raw
 
 The expected camera image type is `sensor_msgs/msg/Image`, **not** `camera_msgs/msg/Image`. Actual topic names depend on the camera plugin's configuration.
 
-## Reproducibility checklist
-
-On a **different computer** with Ubuntu 22.04 / ROS 2 Humble:
-
-- [ ] Clone the repository into a fresh workspace.
-- [ ] Install dependencies using `rosdep` and the documented Gazebo Classic packages.
-- [ ] Build successfully with `colcon build --symlink-install`.
-- [ ] Bring up Gazebo, robot_state_publisher, controllers, joystick, and RViz2 with one launch command.
-- [ ] Confirm the intended world and all obstacle models/meshes/textures load.
-- [ ] Confirm differential-drive motion and odometry work.
-- [ ] Confirm pan/tilt commands and camera images work.
-- [ ] Confirm TF and RViz2 displays work.
-- [ ] Confirm clean shutdown without leftover `gzserver` processes.
-- [ ] Disconnect internet **after installation** and confirm the entire system can still start and operate.
-
-Capture the exact OS, package versions, launch command, pass/fail result, and any fixes required during this test.
-
 ## Troubleshooting
 
 **Missing obstacle models:** Verify that the `models/` directory is installed and registered in `GAZEBO_MODEL_PATH`. Check `model://` references in the world and model mesh URIs. If needed, inspect the environment of the running Gazebo server:
